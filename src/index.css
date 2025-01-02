@@ -1,64 +1,149 @@
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  font-weight: 600;
+  letter-spacing: 0.07rem;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --background-color: white;
+  --secondary-background-color: #f1f1f1;
+  --text-color: rgb(29, 26, 26);
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+[data-theme="dark"] {
+  --background-color: #1c1e1f;
+  --secondary-background-color: #2d2d2f;
+  --text-color: #f2f2f2;
 }
 
 body {
   margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--background-color);
+  transition: 0.2s, color 0.2s;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+  gap: 2rem;
+  padding: 1rem;
+  place-items: center;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+.grid-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  color: var(--text-color);
+  font-size: 1.5rem;
+  border-radius: 0.5rem;
+  width: 75%;
+  padding: 2rem;
+}
+
+.grid-item:hover {
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+.grid-item img {
+  width: 4rem;
+  height: 4rem;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
   }
-  a:hover {
-    color: #747bff;
+
+  50% {
+    opacity: 0;
   }
-  button {
-    background-color: #f9f9f9;
+
+  100% {
+    opacity: 1;
   }
+}
+
+.blinking-item {
+  animation: blink 1.5s infinite;
+}
+
+.dot {
+  height: 25px;
+  width: 25px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.switch {
+  font-size: 17px;
+  position: relative;
+  display: inline-block;
+  width: 3.5em;
+  height: 2em;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  --background: #3f3d3d;
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--background);
+  transition: 0.5s;
+  border-radius: 30px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 1.4em;
+  width: 1.4em;
+  border-radius: 50%;
+  left: 10%;
+  bottom: 15%;
+  box-shadow: inset 8px -4px 0px 0px #fff000;
+  background: var(--background);
+  transition: 0.5s;
+}
+
+input:checked + .slider {
+  background-color: #aeaec7;
+}
+
+input:checked + .slider:before {
+  transform: translateX(100%);
+  box-shadow: inset 15px -4px 0px 15px #fff000;
 }
